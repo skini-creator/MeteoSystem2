@@ -1,0 +1,22 @@
+# Node.js backend
+node_modules/
+
+# Frontend (React)
+front-end/node_modules/
+front-end/build/
+front-end/coverage/
+
+# Système de fichiers local
+.DS_Store
+Thumbs.db
+
+# Fichiers de logs
+*.log
+
+# Dépendances pnpm (si vous utilisez pnpm pour le backend aussi)
+.pnpm/
+node_modules/ # (redondant si déjà là, mais assure une couverture)
+
+# Autres fichiers temporaires ou spécifiques à l'IDE
+.env
+.vscode/
