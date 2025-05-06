@@ -1,41 +1,44 @@
 import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar/SearchBar';
-import WeatherCard from '../components/WeatherCard/WeatherCard';
-import WeatherService from '../services/WeatherService'; // Importe le service
+import './Home.css'; // Importez votre fichier CSS
 
-function Home() {
+function Home({ onSearch }) {
   const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (searchedCity) => {
-    setCity(searchedCity);
-    setWeatherData(null);
-    setError(null);
-    setLoading(true);
+  const handleChange = (event) => {
+    setCity(event.target.value);
+  };
 
-    try {
-      const data = await WeatherService.getWeather(searchedCity); // Appelle le service API
-      setWeatherData(data);
-      setError(null);
-    } catch (err) {
-      console.error("Erreur lors de la récupération de la météo :", err);
-      setError(err.message); // Affiche le message d'erreur du service
-      setWeatherData(null);
-    } finally {
-      setLoading(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (city.trim()) {
+      onSearch(city); // Fonction pour déclencher la recherche (passée depuis le parent)
     }
   };
 
   return (
-    <div>
-      <h1>Application Météo</h1>
-      <SearchBar onSearch={handleSearch} />
-
-      {loading && <p>Chargement des données météo...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {weatherData && <WeatherCard weatherData={weatherData} />}
+    <div className="home-container">
+      <header className="home-header">
+        <h1>Votre Application Météo</h1>
+        <p>Obtenez les prévisions météorologiques rapidement et facilement.</p>
+      </header>
+      <main className="home-main">
+        <form onSubmit={handleSubmit} className="search-form">
+          <input
+            type="text"
+            placeholder="Entrez le nom d'une ville"
+            value={city}
+            onChange={handleChange}
+            className="search-input"
+          />
+          <button type="submit" className="search-button">
+            Rechercher
+          </button>
+        </form>
+        {/* Vous pourriez ajouter ici des exemples de villes ou d'autres éléments */}
+      </main>
+      <footer className="home-footer">
+        <p>&copy; {new Date().getFullYear()} Votre Application Météo</p>
+      </footer>
     </div>
   );
 }
