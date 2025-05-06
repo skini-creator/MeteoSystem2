@@ -1,38 +1,63 @@
-.App {
+.weather-card {
+  background-color: #e0f2f7; /* Bleu très clair comme fond */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  font-family: sans-serif;
+  color: #333; /* Couleur de texte principale */
+}
+
+.location-info {
   text-align: center;
+  margin-bottom: 15px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.city {
+  font-size: 2em;
+  color: #1976d2; /* Bleu plus soutenu pour la ville */
+  margin-bottom: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.weather-details {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.temperature-container {
+  font-size: 3em;
+  color: #2196f3; /* Bleu principal pour la température */
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.temperature {
+  font-weight: bold;
+}
+
+.description-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.description {
+  font-size: 1.2em;
+  color: #1e88e5; /* Autre nuance de bleu pour la description */
+}
+
+.additional-info {
+  text-align: center;
+  color: #555;
+}
+
+.additional-info p {
+  margin: 5px 0;
 }

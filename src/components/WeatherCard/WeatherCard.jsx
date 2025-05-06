@@ -1,25 +1,33 @@
 import React from 'react';
+import './WeatherCard.css'; // Importez votre fichier CSS
 
 function WeatherCard({ weatherData }) {
   if (!weatherData) {
-    return <p>Aucune donnée météo disponible.</p>;
+    return <div className="weather-card">Pas de données météo disponibles.</div>;
   }
-
-  const { name, main, weather, wind } = weatherData;
-  const temperature = main?.temp;
-  const description = weather?.[0]?.description;
-  const iconCode = weather?.[0]?.icon;
-  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-  const windSpeed = wind?.speed;
 
   return (
     <div className="weather-card">
-      <h2>{name}</h2>
-      {temperature && <p>Température: {temperature}°C</p>}
-      {description && <p>Description: {description}</p>}
-      {iconCode && <img src={iconUrl} alt={description} />}
-      {windSpeed && <p>Vent: {windSpeed} m/s</p>}
-      {/* Vous ajouterez ici d'autres informations météo */}
+      <div className="location-info">
+        <h2 className="city">{weatherData.name}</h2>
+      </div>
+      <div className="weather-details">
+        <div className="temperature-container">
+          <span className="temperature">{Math.round(weatherData.main.temp)}°C</span>
+        </div>
+        <div className="description-container">
+          <img
+            src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+            alt={weatherData.weather[0].description}
+            className="weather-icon"
+          />
+          <span className="description">{weatherData.weather[0].description}</span>
+        </div>
+        <div className="additional-info">
+          <p>Humidité: {weatherData.main.humidity}%</p>
+          <p>Vent: {weatherData.wind.speed} m/s</p>
+        </div>
+      </div>
     </div>
   );
 }
